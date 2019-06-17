@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h2>Amil Hasbala</h2>
+    <h5>- 2019 -</h5>
+    <h3>HalalNode Challenge</h3>
   </div>
 </template>

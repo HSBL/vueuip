@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/about">About</router-link> |
-      <router-link to="/css">CSS Challenge</router-link> |
+      <router-link to="/">About</router-link> | 
+      <router-link to="/css">CSS Challenge</router-link> | 
       <router-link to="/js">JS Challenge</router-link>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: 0.2c3e50;
 }
 #nav {
   padding: 30px;

@@ -1,56 +1,28 @@
 <template>
   <div>
+    <app-header v-on:searchEmit="initSearch($event)"></app-header>
     <h3>Unsplashed images</h3>
-    <div class="card-columns">
-      <div
-        v-for="image in images"
-        v-bind:key="image.id"
-        class="card card-custom border-0 rounded-lg shadow-sm rounded-lg"
-      >
-        <div class="card-custom-image">
-          <img v-bind:src="image.urls.regular" class="img-fluid" alt>
-          <div v-if="!image.tags" class="card-body overlay text-center">
-            <p class="card-text">
-              <b>{{ image.user.name }}</b>
-            </p>
-            <div class="text-center location">
-              <p>{{ image.user.location}}</p>
-            </div>
-            <div class="card-custom-avatar">
-              <img v-bind:src="image.user.profile_image.large" alt="profile image">
-            </div>
-          </div>
-          <div v-if="image.tags" class="card-body overlay">
-            <p class="card-text text-center description">{{ image.description }}</p>
-            <p class="card-text">
-              <b>{{ image.user.name }}</b>
-            </p>
-            <div class="card-custom-avatar">
-              <img v-bind:src="image.user.profile_image.large" alt="profile image">
-            </div>
-          </div>
-        </div>
-        <div v-if="image.tags" class="text-center tags">
-          <a
-            v-for="tag in image.tags.slice(0,3)"
-            v-bind:key="tag.index"
-            href="#"
-            v-on:click.prevent="getSearch(tag.title)"
-            class="btn btn-sm btn-secondary"
-          >{{ tag.title }}</a>
-        </div>
-      </div>
-    </div>
+    <app-unsplash v-if="!searched" v-bind:images="images"></app-unsplash>
+    <app-result v-if="searched" v-bind:searchInput="searchInput"></app-result>
   </div>
 </template>
 
 <script>
+import Header from "../components/Header.vue";
+import Unsplash from "../components/result/Unsplash.vue";
+import Result from "./result.vue";
+
 export default {
+  components: {
+    "app-header": Header,
+    "app-unsplash": Unsplash,
+    "app-result": Result
+  },
   data() {
     return {
       images: [],
-      searchInput: "",
       pageCount: 1,
+      searchInput: "",
       searchPage: 1,
       searched: false
     };
@@ -70,18 +42,17 @@ export default {
           this.pageCount++;
         });
     },
+    initSearch(searchString) {
+      this.searchInput = searchString;
+      this.searched = true;
+    },
     scroll() {
       window.onscroll = () => {
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight ===
           document.documentElement.offsetHeight;
-
         if (bottomOfWindow) {
-          if (this.searched) {
-            this.getSearch(this.searchInput);
-          } else {
-            this.getImages();
-          }
+          this.getImages();
         }
       };
     }
@@ -96,6 +67,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 

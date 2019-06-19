@@ -8,7 +8,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/about",
+      path: "/",
       name: "about",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
@@ -24,7 +24,22 @@ export default new Router({
     {
       path: "/js",
       name: "js",
-      component: () => import("./views/js.vue")
+      component: () => import("./views/js.vue"),
+      children:[{
+        path: "/js/",
+        name: "photos",
+        component: () => import("./components/result/Photos.vue"),
+      },
+      {
+        path: "/js/collections",
+        name: "collections",
+        component: () => import("./components/result/Collections.vue")
+      },
+      {
+        path: "/js/users",
+        name: "users",
+        component: () => import("./components/result/Users.vue")
+      }]
     }
   ]
 });

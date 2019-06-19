@@ -54,4 +54,10 @@ nav {
 .input-group {
   background-color: white;
 }
+
+.form-control:focus {
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 </style>

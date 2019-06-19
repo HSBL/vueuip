@@ -1,7 +1,6 @@
 <template>
   <div>
     <app-header v-on:searchEmit="initSearch($event)"></app-header>
-    <h3>Unsplashed images</h3>
     <app-unsplash v-if="!searched" v-bind:images="images"></app-unsplash>
     <app-result v-if="searched" v-bind:searchInput="searchInput"></app-result>
   </div>

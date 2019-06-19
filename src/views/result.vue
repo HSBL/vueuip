@@ -1,5 +1,5 @@
 <template>
-  <div id="app-result">
+  <div class="container" id="app-result">
     <h3>{{ searchInput }} images</h3>
     <div id="nav-result">
       <router-link to="/js/">Photos</router-link> | 
